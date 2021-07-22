@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:generic_shopping_cart/src/module/home/home_controller.dart';
+import 'package:generic_shopping_cart/src/module/shopping_cart/shopping_cart_controller.dart';
+import 'package:generic_shopping_cart/src/module/shopping_cart/shopping_cart_page.dart';
 import 'package:mobx/mobx.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,7 +34,14 @@ class _HomePageState extends State<HomePage> {
           Stack(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => ShoppingCartPage(
+                              controller: ShoppingCartController(
+                                  controller.cartProducts))));
+                },
                 icon: Icon(
                   Icons.shopping_cart,
                 ),
