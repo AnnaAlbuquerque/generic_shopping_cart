@@ -9,18 +9,18 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on HomeControllerBase, Store {
-  final _$numberProductsAtom = Atom(name: 'HomeControllerBase.numberProducts');
+  final _$qtCartProductsAtom = Atom(name: 'HomeControllerBase.qtCartProducts');
 
   @override
-  int get numberProducts {
-    _$numberProductsAtom.reportRead();
-    return super.numberProducts;
+  int get qtCartProducts {
+    _$qtCartProductsAtom.reportRead();
+    return super.qtCartProducts;
   }
 
   @override
-  set numberProducts(int value) {
-    _$numberProductsAtom.reportWrite(value, super.numberProducts, () {
-      super.numberProducts = value;
+  set qtCartProducts(int value) {
+    _$qtCartProductsAtom.reportWrite(value, super.qtCartProducts, () {
+      super.qtCartProducts = value;
     });
   }
 
@@ -28,11 +28,11 @@ mixin _$HomeController on HomeControllerBase, Store {
       ActionController(name: 'HomeControllerBase');
 
   @override
-  void incrementNumberProducts() {
+  void changeItensCart() {
     final _$actionInfo = _$HomeControllerBaseActionController.startAction(
-        name: 'HomeControllerBase.incrementNumberProducts');
+        name: 'HomeControllerBase.changeItensCart');
     try {
-      return super.incrementNumberProducts();
+      return super.changeItensCart();
     } finally {
       _$HomeControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +41,7 @@ mixin _$HomeController on HomeControllerBase, Store {
   @override
   String toString() {
     return '''
-numberProducts: ${numberProducts}
+qtCartProducts: ${qtCartProducts}
     ''';
   }
 }

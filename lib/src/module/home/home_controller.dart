@@ -6,13 +6,20 @@ part 'home_controller.g.dart';
 class HomeController = HomeControllerBase with _$HomeController;
 
 abstract class HomeControllerBase with Store {
+  List<Product> cartProducts = [];
+
   @observable
-  int numberProducts = 0;
+  int qtCartProducts = 0;
 
   @action
-  void incrementNumberProducts() {
-    numberProducts++;
-    print(numberProducts);
+  void changeItensCart() {
+    qtCartProducts = cartProducts.length;
+  }
+
+  void addProductToCart(Product item) {
+    cartProducts.add(item);
+    changeItensCart();
+    print(item);
   }
 
   List<Product> products = [

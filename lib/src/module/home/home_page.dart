@@ -11,13 +11,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ReactionDisposer? disposer;
   HomeController controller = HomeController();
 
   @override
   void initState() {
-    disposer = reaction((_) => controller.numberProducts, (value) {});
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -45,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Observer(builder: (_) {
                     return Text(
-                      "${controller.numberProducts}",
+                      "${controller.qtCartProducts}",
                     );
                   }),
                 ),
@@ -58,9 +61,10 @@ class _HomePageState extends State<HomePage> {
           itemCount: controller.products.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text(controller.products[index].name),
-              onTap: controller.incrementNumberProducts,
-            );
+                title: Text(controller.products[index].name),
+                onTap: () {
+                  controller.addProductToCart(controller.products[index]);
+                });
           }),
     );
   }
