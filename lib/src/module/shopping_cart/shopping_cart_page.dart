@@ -20,6 +20,20 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(widget.controller.items[index].name),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.remove),
+                ),
+                Text("qnt"),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.add),
+                ),
+              ],
+            ),
           );
         },
       ),

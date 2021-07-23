@@ -22,7 +22,7 @@ abstract class HomeControllerBase with Store {
     print(item);
   }
 
-  List<Product> products = [
+  final List<Product> products = [
     Product(name: "item 1", value: 10.0),
     Product(name: "item 2", value: 20.0),
     Product(name: "item 3", value: 30.0),
