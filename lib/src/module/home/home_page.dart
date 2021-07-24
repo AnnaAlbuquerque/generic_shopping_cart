@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:generic_shopping_cart/src/core/entities/cart_itens.dart';
 import 'package:generic_shopping_cart/src/module/home/home_controller.dart';
 import 'package:generic_shopping_cart/src/module/shopping_cart/shopping_cart_controller.dart';
 import 'package:generic_shopping_cart/src/module/shopping_cart/shopping_cart_page.dart';
-import 'package:mobx/mobx.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeController controller = HomeController();
+  ShoppingCartController cartController = ShoppingCartController();
 
   @override
   void initState() {
@@ -36,11 +37,13 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => ShoppingCartPage(
-                              controller: ShoppingCartController(
-                                  controller.cartProducts))));
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ShoppingCartPage(
+                        controller: cartController,
+                      ),
+                    ),
+                  );
                 },
                 icon: Icon(
                   Icons.shopping_cart,
@@ -55,11 +58,13 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.red,
                     shape: BoxShape.circle,
                   ),
-                  child: Observer(builder: (_) {
-                    return Text(
-                      "${controller.qtCartProducts}",
-                    );
-                  }),
+                  child: Observer(
+                    builder: (_) {
+                      return Text(
+                        "${cartController.itemQntTotal}",
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
@@ -72,7 +77,12 @@ class _HomePageState extends State<HomePage> {
             return ListTile(
                 title: Text(controller.products[index].name),
                 onTap: () {
-                  controller.addProductToCart(controller.products[index]);
+                  cartController.addItemCart(
+                    CartItens(
+                      product: controller.products[index],
+                      quantity: 1,
+                    ),
+                  );
                 });
           }),
     );

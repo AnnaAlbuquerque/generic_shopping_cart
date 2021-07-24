@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:generic_shopping_cart/src/module/shopping_cart/shopping_cart_controller.dart';
 
 class ShoppingCartPage extends StatefulWidget {
@@ -15,28 +16,42 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: ListView.builder(
-        itemCount: widget.controller.items.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(widget.controller.items[index].name),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.remove),
-                ),
-                Text("qnt"),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.add),
-                ),
-              ],
+      body: widget.controller.listItems.isEmpty
+          ? Center(
+              child: Text("Empty Cart"),
+            )
+          : ListView.builder(
+              itemCount: widget.controller.listItems.length,
+              itemBuilder: (context, index) {
+                return Observer(
+                  builder: (_) {
+                    return ListTile(
+                      title:
+                          Text(widget.controller.listItems[index].product.name),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              widget.controller.subtractItemQnt(index);
+                            },
+                            icon: Icon(Icons.remove),
+                          ),
+                          Text(
+                              "${widget.controller.listItems[index].quantity}"),
+                          IconButton(
+                            onPressed: () {
+                              widget.controller.addItemQnt(index);
+                            },
+                            icon: Icon(Icons.add),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }
