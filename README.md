@@ -1,16 +1,26 @@
-# generic_shopping_cart
+# Generic Shopping Cart
 
-A new Flutter project.
+Project done during Raro Academy course, as the fifth assignment (LevelUP5)
 
-## Getting Started
+## About the application
 
-This project is a starting point for a Flutter application.
+This project consists of a generic shopping cart.
 
-A few resources to get you started if this is your first Flutter project:
+<img src="./images/generic_shopping_cart.gif" height = "500">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Functionalities
+- Add item to shopping cart
+- Change item quantity
+- Remove item from shopping cart
+
+### Packages used
+- [mobx](https://pub.dev/packages/mobx)
+- [flutter_mobx](https://pub.dev/packages/flutter_mobx)
+- [mobx_codegen](https://pub.dev/packages/mobx_codegen)
+- [build_runner (dev dependency)](https://pub.dev/packages/build_runner)
+
+## To Do
+- [ ] Add some design
+- [ ] Test in different size screens
+- [ ] Test in iOs devices
