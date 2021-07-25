@@ -20,11 +20,11 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
           ? Center(
               child: Text("Empty Cart"),
             )
-          : ListView.builder(
-              itemCount: widget.controller.listItems.length,
-              itemBuilder: (context, index) {
-                return Observer(
-                  builder: (_) {
+          : Observer(
+              builder: (_) {
+                return ListView.builder(
+                  itemCount: widget.controller.listItems.length,
+                  itemBuilder: (context, index) {
                     return ListTile(
                       title:
                           Text(widget.controller.listItems[index].product.name),
