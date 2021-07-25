@@ -37,8 +37,12 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                             },
                             icon: Icon(Icons.remove),
                           ),
-                          Text(
-                              "${widget.controller.listItems[index].quantity}"),
+                          Observer(
+                            builder: (_) {
+                              return Text(
+                                  "${widget.controller.listItems[index].quantity}");
+                            },
+                          ),
                           IconButton(
                             onPressed: () {
                               widget.controller.addItemQnt(index);
