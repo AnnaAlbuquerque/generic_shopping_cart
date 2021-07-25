@@ -49,24 +49,24 @@ class _HomePageState extends State<HomePage> {
                   Icons.shopping_cart,
                 ),
               ),
-              Positioned(
-                right: 11,
-                top: 11,
-                child: Container(
-                  padding: EdgeInsets.all(2),
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Observer(
-                    builder: (_) {
-                      return Text(
-                        "${cartController.itemQntTotal}",
-                      );
-                    },
-                  ),
-                ),
-              ),
+              Observer(builder: (_) {
+                return Positioned(
+                  right: 11,
+                  top: 11,
+                  child: cartController.itemQntTotal > 0
+                      ? Container(
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            "${cartController.itemQntTotal}",
+                          ),
+                        )
+                      : Container(),
+                );
+              }),
             ],
           )
         ],
